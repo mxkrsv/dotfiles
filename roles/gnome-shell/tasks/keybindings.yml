@@ -1,0 +1,64 @@
+- name: Remove switch-to-application-N bindnigs (Super+N)
+  loop:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  community.general.dconf:
+    key: "/org/gnome/shell/keybindings/switch-to-application-{{ item }}"
+    value: "@as []"
+
+- name: Add workspace switch bindings for workspaces 1-9
+  loop:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-{{ item }}"
+    value: "['<Super>{{ item }}']"
+
+- name: Add workspace switch binding for workspace 10
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-10"
+    value: "['<Super>0']"
+
+- name: Add workspace switch binding for last workspace
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-last"
+    value: "['<Super>End']"
+
+- name: Rebind minimization so it remains after PaperWM is enabled
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/minimize"
+    value: "['<Super><Alt>h']"
+
+- name: Add a custom keybinding for the ptyxis terminal
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+    value: "'<Super>t'"
+  
+- name: Set command for the custom keybinding
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+    value: '"ptyxis --new-window"'
+
+- name: Set name for the custom keybinding
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+    value: "'Terminal'"
+
+- name: Add the custom keybinding to the list
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"

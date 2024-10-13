@@ -1,0 +1,9 @@
+- name: Set the number of workspaces to 10
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/preferences/num-workspaces"
+    value: 10
+
+- name: Set mouse focus mode
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/preferences/focus-mode"
+    value: "'mouse'"

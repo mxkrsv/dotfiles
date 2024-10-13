@@ -1,0 +1,17 @@
+- name: Set desktop.interface settings
+  import_tasks: desktop-interface.yml
+
+- name: Set desktop.input.sources settings
+  import_tasks: input-sources.yml
+
+- name: Set color management settings
+  import_tasks: color.yml
+
+- name: Set mutter settings
+  import_tasks: mutter.yml
+
+- name: Set wm preferences
+  import_tasks: wm-preferences.yml
+
+- name: Set keybindings
+  import_tasks: keybindings.yml

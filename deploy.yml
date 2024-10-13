@@ -1,0 +1,6 @@
+- name: Deploy GNOME settings and related apps
+  hosts: localhost
+  tasks:
+    - name: GNOME Shell settings
+      import_role:
+        name: gnome-shell

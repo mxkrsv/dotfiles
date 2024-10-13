@@ -1,0 +1,9 @@
+- name: Set input layouts
+  community.general.dconf:
+    key: "/org/gnome/desktop/input-sources/sources"
+    value: "[('xkb', 'pl'), ('xkb', 'ru')]"
+
+- name: Set xkb options (toggle on caps)
+  community.general.dconf:
+    key: "/org/gnome/desktop/input-sources/xkb-options"
+    value: "['terminate:ctrl_alt_bksp', 'grp:caps_toggle']"

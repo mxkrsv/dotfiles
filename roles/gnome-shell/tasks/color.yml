@@ -1,0 +1,4 @@
+- name: Set night light color temperature
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
+    value: 3700
