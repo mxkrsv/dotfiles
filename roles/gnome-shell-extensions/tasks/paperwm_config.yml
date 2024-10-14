@@ -1,0 +1,130 @@
+- name: Set PaperWM preferences
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    # Restore GNOME default touchpad gestures
+    - key: "/org/gnome/shell/extensions/paperwm/gesture-enabled"
+      value: false
+
+    # Restore GNOME default workspaces pill
+    - key: "/org/gnome/shell/extensions/paperwm/show-workspace-indicator"
+      value: false
+
+    # Mimic "smart gaps" but manually
+    - key: "/org/gnome/shell/extensions/paperwm/maximize-within-tiling"
+      value: false
+
+    # Leave only up and down, as in sway
+    - key: "/org/gnome/shell/extensions/paperwm/open-window-position-left"
+      value: false
+
+    - key: "/org/gnome/shell/extensions/paperwm/window-gap"
+      value: 10
+
+    - key: "/org/gnome/shell/extensions/paperwm/vertical-margin"
+      value: 10
+
+    - key: "/org/gnome/shell/extensions/paperwm/vertical-margin-bottom"
+      value: 10
+
+    - key: "/org/gnome/shell/extensions/paperwm/vertical-margin-bottom"
+      value: 10
+
+    - key: "/org/gnome/shell/extensions/paperwm/selection-border-size"
+      value: 0
+
+    - key: "/org/gnome/shell/extensions/paperwm/selection-border-radius"
+      value: 0
+
+- name: Set PaperWM keybindings
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/close-window"
+      value: "['<Super>q']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/live-alt-tab"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/live-alt-tab-backward"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/live-alt-tab-scratch"
+      value: "['<Super>minus']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/live-alt-tab-scratch-backward"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/move-down"
+      value: "['<Shift><Super>Down', '<Shift><Super>j']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/move-down-workspace"
+      value: "['<Shift><Super>Page_Down', '<Shift><Control><Super>j']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/move-left"
+      value: "['<Shift><Super>Left', '<Shift><Super>h']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/move-right"
+      value: "['<Shift><Super>Right', '<Shift><Super>l']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/move-up"
+      value: "['<Shift><Super>Up', '<Shift><Super>k']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/move-up-workspace"
+      value: "['<Shift><Super>Page_Up', '<Shift><Control><Super>k']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/new-window"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/resize-h-dec"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/resize-h-inc"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/resize-w-dec"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/resize-w-inc"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-down"
+      value: "['<Super>j']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-down-workspace"
+      value: "['<Super>Page_Down', '<Control><Super>j']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-last"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-left"
+      value: "['<Super>Left', '<Super>h']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-next"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-open-window-position"
+      value: "['<Super>b']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-previous"
+      value: "['']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-right"
+      value: "['<Super>Right', '<Super>l']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-up"
+      value: "['<Super>k']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/switch-up-workspace"
+      value: "['<Super>Page_Up', '<Control><Super>k']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/take-window"
+      value: "['<Shift><Super>t']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/toggle-scratch"
+      value: "['<Shift><Super>space']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/toggle-scratch-window"
+      value: "['<Shift><Super>underscore']"

@@ -1,0 +1,21 @@
+- name: Install Vitals extension
+  include_tasks: extension.yml
+  vars:
+    uuid: "Vitals@CoreCoding.com"
+
+- name: Install GSConnect on Fedora
+  become: true
+  ansible.builtin.dnf:
+    name: gnome-shell-extension-gsconnect
+    state: present
+  when: ansible_distribution == "Fedora"
+
+# TODO: install GSConnect on other distros too
+
+- name: Install PaperWM extension
+  include_tasks: extension.yml
+  vars:
+    uuid: "paperwm@paperwm.github.com"
+
+- name: Configure PaperWM extension
+  include_tasks: paperwm_config.yml

@@ -1,0 +1,9 @@
+- name: Install {{ uuid }} GNOME Shell extension
+  ansible.builtin.command: |-
+    gdbus call --session --interactive
+      --dest org.gnome.Shell.Extensions
+      --object-path /org/gnome/Shell/Extensions
+      --method org.gnome.Shell.Extensions.InstallRemoteExtension
+      {{ uuid|quote }}
+  args:
+    creates: ~/.local/share/gnome-shell/extensions/{{ uuid }}

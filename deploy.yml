@@ -5,6 +5,10 @@
       import_role:
         name: gnome-shell
 
+    - name: GNOME Shell extensions
+      import_role:
+        name: gnome-shell-extensions
+
 - name: Deploy additional apps
   hosts: localhost
   tasks:
