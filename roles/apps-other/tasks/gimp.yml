@@ -1,0 +1,6 @@
+- name: Install GIMP on Fedora
+  become: true
+  dnf:
+    name: gimp
+    state: present
+  when: ansible_distribution == "Fedora"

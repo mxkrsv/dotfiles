@@ -11,3 +11,7 @@
     - name: GNOME additional apps
       import_role:
         name: gnome-apps
+
+    - name: Deploy other apps
+      import_role:
+        name: apps-other

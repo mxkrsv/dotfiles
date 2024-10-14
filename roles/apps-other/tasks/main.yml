@@ -1,0 +1,5 @@
+- name: Install Telegram Desktop
+  import_tasks: telegram.yml
+
+- name: Install GIMP
+  import_tasks: gimp.yml
