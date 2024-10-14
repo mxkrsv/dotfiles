@@ -1,0 +1,6 @@
+- name: Install additional GNOME apps (Fedora)
+  import_tasks: fedora.yml
+  when: ansible_distribution == "Fedora"
+
+- name: Import GNOME Web settings
+  import_tasks: epiphany.yml

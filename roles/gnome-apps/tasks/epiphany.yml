@@ -1,0 +1,31 @@
+- name: Set Epiphany search engines
+  community.general.dconf:
+    key: "/org/gnome/epiphany/search-engine-providers"
+    value: >-
+      [
+        {
+          'url': <'https://duckduckgo.com/?q=%s&t=epiphany'>,
+          'bang': <'!ddg'>,
+          'name': <'DuckDuckGo'>
+        },
+        {
+          'url': <'https://www.google.com/search?q=%s'>,
+          'bang': <'!g'>,
+          'name': <'Google'>
+        },
+        {
+          'url': <'https://context.reverso.net/translation/english-russian/%s'>,
+          'bang': <'!rg'>,
+          'name': <'ReversoContext'>
+        },
+        {
+          'url': <'https://repology.org/projects/?search=%s'>,
+          'bang': <'!repology'>,
+          'name': <'Repology'>
+        }
+      ]
+
+- name: Set Epiphany default search engine
+  community.general.dconf:
+    key: "/org/gnome/epiphany/default-search-engine"
+    value: "'Google'"

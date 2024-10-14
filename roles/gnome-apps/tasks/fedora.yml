@@ -1,0 +1,15 @@
+- name: Install DNF packages for GNOME additional apps (Fedora)
+  become: true
+  dnf:
+    name:
+      - epiphany # GNOME Web
+      - dialect # translator
+      - fragments # torrent client
+    state: present
+
+- name: Install Flatpak packages for GNOME additional apps (Fedora)
+  community.general.flatpak:
+    name:
+      - org.gnome.World.Iotas # notes with nextcloud sync
+      - io.gitlab.news_flash.NewsFlash # RSS feed reader
+    state: present
