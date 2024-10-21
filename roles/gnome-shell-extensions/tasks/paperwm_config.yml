@@ -128,3 +128,6 @@
 
     - key: "/org/gnome/shell/extensions/paperwm/keybindings/toggle-scratch-window"
       value: "['<Shift><Super>underscore']"
+
+    - key: "/org/gnome/shell/extensions/paperwm/keybindings/center-vertically"
+      value: "['<Shift><Super>v']"
