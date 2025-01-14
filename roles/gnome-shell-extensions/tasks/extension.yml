@@ -1,9 +1,52 @@
-- name: Install {{ uuid }} GNOME Shell extension
-  ansible.builtin.command: |-
-    gdbus call --session --interactive
-      --dest org.gnome.Shell.Extensions
-      --object-path /org/gnome/Shell/Extensions
-      --method org.gnome.Shell.Extensions.InstallRemoteExtension
-      {{ uuid|quote }}
-  args:
-    creates: ~/.local/share/gnome-shell/extensions/{{ uuid }}
+- name: Check if GNOME Shell extension directory exists
+  ansible.builtin.stat:
+    path: "~/.local/share/gnome-shell/extensions/{{ uuid }}"
+  register: extension_dir
+
+- name: Get GNOME Shell version
+  ansible.builtin.command: gnome-shell --version
+  register: gnome_shell_version
+  changed_when: false
+
+- name: Set GNOME Shell major.minor version
+  ansible.builtin.set_fact:
+    shell_version: "{{ gnome_shell_version.stdout.split(' ')[-1].rsplit('.', 1)[0] }}"
+
+- name: Download GNOME Shell extension
+  ansible.builtin.get_url:
+    url: "https://extensions.gnome.org/download-extension/{{ uuid }}.shell-extension.zip?shell_version={{ shell_version }}"
+    dest: "/tmp/{{ uuid }}.zip"
+    mode: '0644'
+  when: not extension_dir.stat.exists
+
+- name: Create extension directory
+  ansible.builtin.file:
+    path: "~/.local/share/gnome-shell/extensions/{{ uuid }}"
+    state: directory
+    mode: '0755'
+  when: not extension_dir.stat.exists
+
+- name: Extract extension
+  ansible.builtin.unarchive:
+    src: "/tmp/{{ uuid }}.zip"
+    dest: "~/.local/share/gnome-shell/extensions/{{ uuid }}"
+    remote_src: yes
+  when: not extension_dir.stat.exists
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: "/tmp/{{ uuid }}.zip"
+    state: absent
+  when: not extension_dir.stat.exists
+
+- name: Get current enabled extensions
+  ansible.builtin.command: gsettings get org.gnome.shell enabled-extensions
+  register: current_extensions
+  changed_when: false
+
+- name: Enable extension
+  ansible.builtin.command: >
+    gsettings set org.gnome.shell enabled-extensions
+    "{{ (current_extensions.stdout | regex_replace('[@\[\]]', '') | split(',') | select('ne', '') | list + [uuid]) | unique | list | to_json }}"
+  changed_when: true
+  when: uuid not in current_extensions.stdout
