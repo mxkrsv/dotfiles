@@ -4,6 +4,11 @@
     value: >-
       [
         {
+          'url': <'https://kagi.com/search?q=%s'>,
+          'bang': <'!k'>,
+          'name': <'Kagi'>
+        },
+        {
           'url': <'https://duckduckgo.com/?q=%s&t=epiphany'>,
           'bang': <'!ddg'>,
           'name': <'DuckDuckGo'>
@@ -28,4 +33,4 @@
 - name: Set Epiphany default search engine
   community.general.dconf:
     key: "/org/gnome/epiphany/default-search-engine"
-    value: "'Google'"
+    value: "'Kagi'"
